@@ -1,0 +1,10 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
+#   Mayor.create(:name => 'Daley', :city => cities.first)
+q1 = Question.create(:score => 0, :title => "hello world", :details => "this is a test question")
+q2 = Question.create(:score => 0, :title => "hey there", :details => "this is a test question")
+a1 = q1.answers.create(:content => "test answer", :score => 0)

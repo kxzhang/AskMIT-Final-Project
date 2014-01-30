@@ -1,0 +1,52 @@
+<div class="form_content">
+    <%= form_for @user do |f| %>
+      <div class="field">
+        <%= f.label :email, 'Email' %>
+        <%= f.text_field :email %>
+        <% if @email_error %>
+          <div class ="alert alert-error">
+            <%= @email_error %>
+          </div>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :first_name, 'First Name' %>
+        <%= f.text_field :first_name %>
+        <% if @first_name_error %>
+            <div class ="alert alert-error">
+              <%= @first_name_error %>
+            </div>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name, 'Last Name' %>
+        <%= f.text_field :last_name %>
+        <% if @last_name_error %>
+            <div class ="alert alert-error">
+              <%= @last_name_error %>
+            </div>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :password, 'Password' %>
+        <%= f.password_field :password %>
+        <% if @password_error %>
+            <div class ="alert alert-error">
+              <%= @password_error %>
+            </div>
+        <% end %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation, 'Confirm your password' %>
+        <%= f.password_field :password_confirmation %>
+        <% if @password_confirmation_error %>
+            <div class ="alert alert-error">
+              <%= @password_confirmation_error %>
+            </div>
+        <% end %>
+      </div>
+      <div class="actions pull-right">
+        <%= f.submit "Sign Up", :class => "btn"%>
+      </div>
+   <% end %>
+</div>

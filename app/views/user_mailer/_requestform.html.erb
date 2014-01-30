@@ -1,0 +1,10 @@
+<% initial_request = "I saw this question and immediately thought that you are the best person to answer it! If so, please contribute to the MIT community by providing an answer." %>
+
+<%= form_tag({:controller => 'questions', :action => 'request_send_email'}, :method => "post", :class => "request-answer-form") do %>
+	<%= hidden_field_tag(:qid, @question.id) %>
+	<%= label_tag(:email, "Send to (email):") %>
+	<%= text_field_tag(:email) %>
+	<%= label_tag(:request, "Personalize your request:") %>
+        <%= text_area_tag(:request, initial_request) %>
+	<%= submit_tag("Send Request") %>
+<% end %>

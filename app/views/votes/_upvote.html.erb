@@ -1,0 +1,9 @@
+<!-- To render this partial simply call:
+     <% render :partial => "votes/upvote", :locals => { :post => @post } %>
+     Where @post will be the specific post instance that the partial is for
+-->
+
+<%= form_for post, :remote => true, :url => { :controller => :votes, :action=> :upvote }, :html => {:method => "POST" } do |f| %>
+  <%= f.hidden_field :id, :value => post.id %>
+  <%= f.submit "Upvote", :class => "btn btn-inverse" %>
+<% end %>

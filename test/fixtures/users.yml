@@ -1,0 +1,48 @@
+Derek:
+  id: 1
+  email: dvaughn@mit.edu
+  first_name: Derek
+  last_name: Vaughn
+  password_digest: whatever
+  confirm: true
+  token: whatever
+  avatar_file_name: filename
+  avatar_content_type: content
+  avatar_file_size: 1
+
+Helen:
+  id: 2
+  email: xunjieli@mit.edu
+  first_name: Helen
+  last_name: Li
+  password_digest: whatever
+  confirm: true
+  token: whatever
+  avatar_file_name: filename
+  avatar_content_type: content
+  avatar_file_size: 1
+
+Jen:
+  id: 3
+  email: jkliu@mit.edu
+  first_name: Jen
+  last_name: Liu
+  password_digest: whatever
+  confirm: true
+  token: whatever
+  avatar_file_name: filename
+  avatar_content_type: content
+  avatar_file_size: 1
+
+Kelly:
+  id: 4
+  email: kxzhang@mit.edu
+  first_name: Kelly
+  last_name: Zhang
+  password_digest: whatever
+  confirm: true
+  token: whatever
+  avatar_file_name: filename
+  avatar_content_type: content
+  avatar_file_size: 1
+

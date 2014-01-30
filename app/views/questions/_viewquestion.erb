@@ -1,0 +1,51 @@
+<% if viewquestion.score > -5 %>  <!-- automatically hide bad questions -->
+    <div class="post-div question question-li" id="q_<%= viewquestion.id %>">
+
+      <div class="individual-question">
+        <%= render :partial => 'questions/votebox', :locals => {:viewquestion => viewquestion} %>
+        <div class="question-created-at">
+          <div class="pull-left">
+            <div class="row-1">
+              <% if viewquestion.is_anon? %>
+                  <%=  image_tag("default.jpg", :class =>'small-profile-pic') %>
+                  <span class="author">Anon User</span>
+              <% else %>
+                  <% poster = User.find(viewquestion.user_id) %>
+                  <% if poster.avatar.exists? %>
+                      <%= image_tag(poster.avatar.url(:thumb), :class =>'small-profile-pic') %>
+                  <% else %>
+                      <%=  image_tag("default.jpg", :class =>'small-profile-pic') %>
+                  <% end %>
+                  <span class="author"><%= link_to poster.first_name + " " + poster.last_name, poster %></span>
+              <% end %>
+            </div>
+            <div class="row-2">
+              <%= short_date_form(viewquestion.created_at) %>
+            </div>
+
+          </div>
+        </div>
+        <div class="question-title"><%= link_to viewquestion.title, question_path(viewquestion) %></div>
+
+        <div class="top-answer">
+          <% if viewquestion.answers.blank? %>
+              <span class="gray">Be the first to answer this question!</span>
+          <% else %>
+              <div class="author">
+                <% top_answer = viewquestion.answers.order('score DESC').first %>
+                <% if top_answer.is_anon %>
+                    Anon user
+                <% else %>
+                    <%= link_to top_answer.user.first_name + " " + top_answer.user.last_name, top_answer.user %>
+                <% end %>
+              </div>
+              <%= top_answer.content %>
+          <% end %>
+        </div>
+      </div>
+      <div class="follow-toggle pull-right">
+        <%= render :partial => 'follows/toggle', :locals => {:viewquestion => viewquestion} %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+<% end %>

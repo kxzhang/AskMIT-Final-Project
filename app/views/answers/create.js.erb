@@ -1,0 +1,6 @@
+$('#no-answer-text').hide();
+var new_answer = $("<%= escape_javascript(render(:partial => @answer)) %>");
+// have the new answer fade in
+new_answer.appendTo('#answers').hide().fadeIn();
+// reset the answer form
+$("#new_answer")[0].reset();

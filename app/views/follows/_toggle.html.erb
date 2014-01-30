@@ -1,0 +1,5 @@
+      <% if current_user.isFollowing(viewquestion.id) %>
+          <button type="button" class="follow-btn btn btn-mini btn-warning active"><i class="icon-star icon-white"></i></button>
+      <% else %>
+          <button type="button" class="follow-btn btn btn-mini btn-warning"><i class="icon-star"></i></button>
+      <% end %>

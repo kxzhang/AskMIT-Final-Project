@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+<h1><%= @userfrom.first_name%> <%= @userfrom.last_name %> has sent you a request:</h1>
+<p>
+  <%= @text %>
+</p>
+<p> You can view the question here: </p>
+<p> http://obscure-earth-7041.herokuapp.com/main/questions/<%= @q_id %> </p>
+<p>Thanks, and have a great day!</p>
+</body>
+</html>

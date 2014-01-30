@@ -1,0 +1,36 @@
+n1:
+  read: false
+  type: NewAnswerNotification
+  user_id: 2
+  modifier_id: 1
+  is_anon: false
+  question_title: string
+  question_id: 1
+
+
+n2:
+  read: false
+  type: NewAnswerNotification
+  user_id: 2
+  modifier_id: 1
+  is_anon: true
+  question_title: string
+  question_id: 1
+
+p1:
+  read: true
+  type: NewAnswerNotification
+  user_id: 2
+  modifier_id: 1
+  is_anon: false
+  question_title: string
+  question_id: 1
+
+p2:
+  read: true
+  type: NewAnswerNotification
+  user_id: 2
+  modifier_id: 1
+  is_anon: true
+  question_title: string
+  question_id: 1

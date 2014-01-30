@@ -1,0 +1,28 @@
+Answer1:
+  content: Any of the libraries. Also, people are always sleping outside of 26-100 so it must be a good spot.
+  user_id: 4
+  question_id: 1
+  score: 0
+  is_anon: false
+
+Answer2:
+  content: The first week or two can be frustrating as you are potentially learning both a new language and a new web platform. A good estimate once things smooth out is 10 hours/week.
+  user_id: 3
+  question_id: 2
+  score: 0
+  is_anon: false
+
+Answer3:
+  content: Yes! Im glad I was anonymous for this post!
+  user_id: 2
+  question_id: 3
+  score: 0
+  is_anon: true
+
+Answer4:
+  content: Simply put, it is because MIT did not become the top school in the nation by taking extended Christmas breaks.
+  user_id: 1
+  question_id: 4
+  score: 0
+  is_anon: true
+

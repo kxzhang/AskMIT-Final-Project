@@ -1,0 +1,35 @@
+Question1:
+  id: 1
+  details: Specifically, East of Massachusetts Avenue.
+  title: Where is a good place to take a nap on campus?
+  user_id: 1
+  hashtag_id: 1
+  score: 0
+  is_anon: true
+
+Question2:
+  id: 2
+  details: Specifically, outside of class.
+  title: How many hours of the week does 6.170 take up?
+  user_id: 1
+  hashtag_id: 2
+  score: 0
+  is_anon: true
+
+Question3:
+  id: 3
+  details: 
+  title: Is there a 5th floor of the student center?
+  user_id: 1
+  hashtag_id: 3
+  score: 0
+  is_anon: false
+
+Question4:
+  id: 4
+  details: Do they really just hate us?
+  title: Why does MITs fall semester end so close to Christmas?
+  user_id: 1
+  hashtag_id: 4
+  score: 0
+  is_anon: false

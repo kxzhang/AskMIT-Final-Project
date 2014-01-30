@@ -1,0 +1,59 @@
+<% modifier = User.find(notificationli.modifier_id) %>
+<% if Question.exists?(notificationli.question_id) %>
+    <% question = Question.find(notificationli.question_id) %>
+    <% s = "" %>
+    <li>
+      <% if notificationli.type == "NewAnswerNotification" %>
+          <% if !notificationli.is_anon? %>
+              <% s = modifier.first_name + " " + modifier.last_name + " posted an answer to question \"" + question.title + "\"" %>
+          <% else %>
+              <% s = "Anon User posted an answer to question \"" + question.title + "\"" %>
+          <% end %>
+      <% elsif notificationli.type == "EditQuestionNotification" %>
+          <% if !notificationli.is_anon? %>
+              <% s = modifier.first_name + " " + modifier.last_name + " edited question \"" + question.title + "\"" %>
+          <% else %>
+              <% s = "Anon User edited question \"" + question.title + "\"" %>
+          <% end %>
+      <% elsif notificationli.type == "DeleteQuestionNotification" %>
+          <% if !notificationli.is_anon? %>
+              <% s = modifier.first_name + " " + modifier.last_name + " deleted question \"" + question.title + "\"" %>
+          <% else %>
+              <% s = "Anon User deleted question \"" + question.title + "\"" %>
+          <% end %>
+      <% elsif notificationli.type == "UpvoteQuestionNotification" %>
+          <% s = "\"" + question.title + "\" has been upvoted" %>
+      <% elsif notificationli.type == "DownvoteQuestionNotification" %>
+          <% s = "\"" + question.title + "\" has been downvoted" %>
+      <% end %>
+      <%= link_to s, question, "tabindex" => "-1" %>
+    </li>
+
+<% else %>
+    <li>
+      <% if notificationli.type == "NewAnswerNotification" %>
+          <% if !notificationli.is_anon? %>
+              <% s = modifier.first_name + " " + modifier.last_name + " posted an answer to question \"" + notificationli.question_title + "\" (deleted)" %>
+          <% else %>
+              <% s = "Anon User posted an answer to question \"" + question.title + "\" (deleted)" %>
+          <% end %>
+      <% elsif notificationli.type == "EditQuestionNotification" %>
+          <% if !notificationli.is_anon? %>
+              <% s = modifier.first_name + " " + modifier.last_name + " edited question \"" + notificationli.question_title + "\" (deleted)" %>
+          <% else %>
+              <% s = "Anon User edited question \"" + question.title + "\" (deleted)" %>
+          <% end %>
+      <% elsif notificationli.type == "DeleteQuestionNotification" %>
+          <% if !notificationli.is_anon? %>
+              <% s = modifier.first_name + " " + modifier.last_name + " deleted question \"" + notificationli.question_title + "\" (deleted)" %>
+          <% else %>
+              <% s = "Anon User deleted question \"" + question.title + "\" (deleted)" %>
+          <% end %>
+      <% elsif notificationli.type == "UpvoteQuestionNotification" %>
+          <% s = "\"" + notificationli.question_title + "\" has been upvoted" %>
+      <% elsif notificationli.type == "DownvoteQuestionNotification" %>
+          <% s = "\"" + notificationli.question_title + "\" has been downvoted" %>
+      <% end %>
+      <%= link_to s, "#", "tabindex" => "-1" %>
+    </li>
+<% end %>

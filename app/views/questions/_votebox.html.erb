@@ -1,0 +1,15 @@
+  <div class="vote">
+    <!--TODO: write function to check if previously upvoted -->
+    <% if current_user.get_question_score(viewquestion.id) == 1 %>
+      <button type="button" class="question up vote-btn btn btn-mini btn-success active"><i class="icon-chevron-up icon-white" action="<%= upvote_path %>"></i></button>
+    <% else %>
+      <button type="button" class="question up vote-btn btn btn-mini btn-success" action="<%= upvote_path %>"><i class="icon-chevron-up"></i></button>
+    <% end %>
+    <div class="score"><%= viewquestion.score %></div>
+    
+    <% if current_user.get_question_score(viewquestion.id) == -1 %>
+      <button type="button" class="question down vote-btn btn btn-mini btn-success active"><i class="icon-chevron-down icon-white" action="<%= downvote_path %>"></i></button>
+    <% else %>
+      <button type="button" class="question down vote-btn btn btn-mini btn-success" action="<%= downvote_path %>"><i class="icon-chevron-down"></i></button>
+    <% end %>
+  </div>

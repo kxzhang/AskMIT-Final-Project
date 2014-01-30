@@ -1,0 +1,40 @@
+
+#search-bar {
+  width: 500px;
+  margin: 5px 0px 0px 30px;
+  display: inline-block;
+  float: left;
+  input {
+    width: 77%;
+  }
+  .btn {
+    margin: 0px 20px 8px 10px;
+  }
+}
+
+.navbar-inner {
+  background-repeat: repeat;
+  background-image: url('crossed_stripes.png');
+  min-height: 50px;
+  .container {
+    padding-top: 7px;
+  }
+}
+
+
+.navbar .nav > li > a {
+  color: white;
+  font-size: 14px;
+  span {
+    font-size: 12px;
+    padding: 2px 5px 2px 5px;
+    border: solid 1.0px white;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+  }
+  .sr {
+    background: #ff0000;
+    border:none;
+  }
+}

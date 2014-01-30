@@ -1,0 +1,23 @@
+<div class="form_content">
+  <% if flash[:notice] %>
+    <div class="alert"><%= flash[:notice] %></div>
+  <% end %>
+  <%= form_tag sessions_path do %>
+    <div class="field">
+      <%= label_tag :email %>
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+    <div class="field">
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </div>
+   <div class="actions">
+     <div class="pull-left">
+       <%= link_to "Sign Up Now", new_user_path %>
+     </div>
+     <div class="pull-right">
+       <%= submit_tag "Log in", :class => "btn" %>
+     </div>
+   </div>
+  <% end %>
+</div>

@@ -1,0 +1,78 @@
+<h1>Notifications</h1>
+<% if @notifications.empty? %>
+    <div>You do not have any notifications yet</div>
+<% else %>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Details</th>
+        <th>Date</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @notifications.each do |n| %>
+          <tr>
+            <td>
+              <% modifier = User.find(n.modifier_id) %>
+              <% if Question.exists?(n.question_id) %>
+                  <% question = Question.find(n.question_id) %>
+                  <% if n.type == "NewAnswerNotification" %>
+                      <% if !n.is_anon? %>
+                          <% s = " posted an answer to question " %>
+                          <%= link_to modifier.first_name + " " + modifier.last_name, modifier %><%= s %><%= link_to question.title, question %>.
+                      <% else %>
+                          <% s = "Anon User posted an answer to question " %>
+                          <%= s %><%= link_to question.title, question %>.
+                      <% end %>
+                  <% elsif n.type == "EditQuestionNotification"%>
+                      <% if !n.is_anon? %>
+                          <% s = " edited question " %>
+                          <%= link_to modifier.first_name + " " + modifier.last_name, modifier %><%= s %><%= link_to question.title, question %>.
+                      <% else %>
+                          <% s = "Anon User edited question " %>
+                          <%= s %><%= link_to question.title, question %>.
+                      <% end %>
+                  <% elsif n.type == "UpvoteQuestionNotification"%>
+                      <%= link_to question.title, question %> has been upvoted.
+                  <% elsif n.type == "DownvoteQuestionNotification"%>
+                      <%= link_to question.title, question %> has been downvoted.
+                  <% end %>
+              <!-- question is deleted, so dont show question link -->
+              <% else %>
+                  <% if n.type == "NewAnswerNotification" %>
+                      <% if !n.is_anon? %>
+                          <% s = " posted an answer to question " %>
+                          <%= link_to modifier.first_name + " " + modifier.last_name, modifier %><%= s %><%= n.question_title %> (deleted).
+                      <% else %>
+                          <% s = "Anon User posted an answer to question " %>
+                          <%= s %><%= n.question_title %> (deleted).
+                      <% end %>
+                  <% elsif n.type == "EditQuestionNotification"%>
+                      <% if !n.is_anon? %>
+                          <% s = " edited question " %>
+                          <%= link_to modifier.first_name + " " + modifier.last_name, modifier %><%= s %><%= n.question_title %> (deleted).
+                      <% else %>
+                          <% s = "Anon User edited question " %>
+                          <%= s %><%= n.question_title %> (deleted).
+                      <% end %>
+                  <% elsif n.type == "DeleteQuestionNotification" %>
+                      <% if !n.is_anon? %>
+                          <% s = " deleted question " %>
+                          <%= link_to modifier.first_name + " " + modifier.last_name, modifier %><%= s %><%= n.question_title %> (deleted).
+                      <% else %>
+                          <% s = "Anon User deleted question " %>
+                          <%= s %><%= n.question_title %> (deleted).
+                      <% end %>
+                  <% elsif n.type == "UpvoteQuestionNotification"%>
+                      <%= n.question_title %> (deleted) has been upvoted.
+                  <% elsif n.type == "DownvoteQuestionNotification"%>
+                      <%= n.question_title %> (deleted) has been downvoted.
+                  <% end %>
+              <% end %>
+            </td>
+            <td><%= long_date_form(n.created_at) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>

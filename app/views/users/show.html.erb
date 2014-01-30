@@ -1,0 +1,71 @@
+<% provide(:title, 'Profile Page') %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="span1">
+      <% if @user.avatar.exists? then %>
+          <%= image_tag @user.avatar.url(:thumb, :class =>'profile-pic') %>
+      <% else %>
+          <%=  image_tag("default.jpg", :class =>'profile-pic') %>
+      <% end %>
+    </div>
+    <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+  </div>
+  </br>
+
+  <ul class="nav nav-tabs">
+    <li><a href="#Questions" data-toggle="tab">Questions</a></li>
+    <li><a href="#Answers" data-toggle="tab">Answers</a></li>
+    <li><a href="#Follows" data-toggle="tab">Follows</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="Questions">
+      <table class="table">
+        <% @questions.each do |question| %>
+            </tr>
+            <td><%= link_to question.title, question_path(question.id) %> </td>
+            <td><%= short_date_form(question.created_at) %></td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="tab-pane" id="Answers">
+      <table class="table">
+        <% @answers.each do |answer| %>
+            </tr>
+            <td><%= link_to answer.title, question_path(answer.id) %> </td>
+            <td><%= short_date_form(answer.created_at) %></td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+
+    <div class="tab-pane" id="Follows">
+      <table class="table">
+        <% @follows.each do |fol| %>
+            </tr>
+            <td><%= link_to fol.title, question_path(fol.id) %> </td>
+            <td><%= short_date_form(fol.created_at) %></td>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+    $('#home').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+    $('#profile').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+
+    $('#messages').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    })
+</script>

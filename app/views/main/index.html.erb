@@ -1,0 +1,105 @@
+<div class="container-fluid">
+  <% if @hashtag %>
+    <h1>#<%= @hashtag.name %></h1>
+  <% end %>
+  <div class="row-fluid" id="main-top">
+    <div class="span10">
+      <ul class="nav nav-tabs" id="sort">
+        <li id="sort-popular" class="active"><a>Popular</a></li>
+        <li id="sort-recent"><a>Newest</a></li>
+        <li id="sort-follow"><a><button type="button" class="disabled btn btn-mini btn-warning active"><i class="icon-star icon-white"></i></button> Following</a></li>
+      </ul>
+    </div>
+    <div class="span2">
+      <a href="#question-form" role="button" class="btn btn-primary ask-btn" data-toggle="modal"><i class="icon-white icon-plus"></i> New Question</a>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div id="main-display" class="row-fluid">
+      <div id="question-display" class="span10">
+      </div>
+      <div id="hashtag-display" class="span2">
+        <h3> Trending Topics </h3>
+        <%= render :partial => '/hashtags/hashtag', :collection => @hashtags %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="question-form" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3>Add a new question</h3>
+  </div>
+  <div class="modal-body">
+    <%= render 'questions/form' %>
+  </div>
+</div>
+
+<script type="text/javascript">
+    // registers handler for triggered auto-complete for hashtags
+    // put it here to avoid being compiled for the whole application.
+    auto_complete_hashtags();
+
+    // infinite scrolling
+    // (referenced Kaminari Infinite Scrolling with Jquery, code copied and adapted from multiple external resources)
+    // this script is page specific, so we put it here. There are alternative ways for it to skip the
+    // asset pipeline. but for the sake of saving time, we choose the most straight forward way
+    <% if @hashtag %>
+        var controller_prefix = '/main/hashtags/<%= @hashtag.id %>';
+    <% else %>
+        var controller_prefix = '/main';
+    <% end %>
+
+    // Requires: None
+    // Modifies: None
+    // Effects: return a string that represents current sort
+    var check_sort = function () {
+        var sort = 'popular';
+        if($('#sort-recent').hasClass('active')) {
+            sort = 'recent'
+        }
+
+        if($('#sort-follow').hasClass('active')) {
+            sort = 'follow'
+        }
+        return sort;
+    }
+
+    // page specific document ready
+    $(document).ready(function () {
+        // load first page of data
+        $.getJSON(controller_prefix + '/sort?by=' + check_sort() + '&page=' + 1, function(data) {
+            var html = data['html'];
+            if (html === " " ) {
+              html = "There are currently no questions on this topic. <a href='#question-form' data-toggle='modal'>Ask one</a> now!";
+            }
+            $('#question-display').append(html);
+        });
+    });
+    // if user scrolls near the bottom of the page, fetch more data
+    (function() {
+        var page = 1,
+        loading = false;
+
+        function nearBottomOfPage() {
+            return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
+        }
+
+        $(window).scroll(function(){
+            if (loading) {
+                return;
+            }
+            if(nearBottomOfPage()) {
+                loading=true;
+                page++;
+                $.getJSON(controller_prefix + '/sort?by=' + check_sort() + '&page=' + page, function(data) {
+
+                    var html = data['html'];
+                    loading=false;
+                    $('#question-display').append(html);
+                });
+            }
+        });
+    }());
+</script>

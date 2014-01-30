@@ -1,0 +1,36 @@
+<%= form_for @question, :class => 'form-horizontal' do |f| %>
+
+<div class="control-group">
+	<%= label_tag :title, "Title", :class => 'control-label' %>
+	<div class="controls">
+		<%= f.text_field :title, :placeholder => "Type your question here" %>
+	</div>
+</div>
+
+<div class="control-group">
+	<%= label_tag :details, "Details", :class => 'control-label' %>
+	<div class="controls">
+		<%= f.text_area :details, :placeholder => "Optional: add more information", :rows => 5 %>
+	</div>
+</div>
+
+<div class="control-group">
+	<%= label_tag :hashtag, "Tags", :class => 'control-label' %> 
+	<div class="controls">
+		
+		<%= text_field_tag :hashtag, nil, :placeholder => "Enter at least one, e.g. #dining", :class => 'ui-widget'%>
+	</div>
+</div>
+
+<div class="control-group">
+	<div class="controls">
+        <label class="checkbox anon-checkbox control-label">
+            <%= f.check_box :is_anon %>
+            <!-- <%=check_box_tag('is_anon', '1', checked = false)%> -->
+            Post anonymously
+        </label>
+        <div class="btn btn-primary post-btn" id="new-question-ask-btn">Ask!</div>
+	</div>
+</div>
+
+<% end %>

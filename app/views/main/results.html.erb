@@ -1,0 +1,6 @@
+<div id="search-display">
+  <div id="search-question-display" class="pull-left">
+    <div id="search-message">You've searched for "<%= params[:q] %>"</div>
+    <%= render :partial => '/questions/viewquestion', :collection => @questions %>
+  </div>
+</div>
